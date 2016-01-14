@@ -1,0 +1,17 @@
+{
+    "contents" : "# Practical-Machine-Learning\nPractical Machine Learning Course Project\n\nThe goal of this project is to predict the manner in which they did the exercise based on the Training Dataset & Testing Dataset given\n\nThe report should describe:\n\n•\t“how you built your model”\n\n•\t“how you used cross validation”\n\n•\t“what you think the expected out of sample error is”\n\n•\t“why you made the choices you did”\n\nUltimately, the prediction model is to be run on the test data to predict the outcome of 20 different test cases.\n",
+    "created" : 1452759528984.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3981605590",
+    "id" : "1FF90B15",
+    "lastKnownWriteTime" : 1452757490,
+    "path" : "D:/SIU2/Big_Data_Course/08-Practical_Machine_Learning/Project/Project/Practical-Machine-Learning/README.md",
+    "project_path" : "Practical-Machine-Learning/README.md",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "markdown"
+}
