@@ -1,0 +1,17 @@
+{
+    "contents" : "---\noutput: pdf_document\n---\n# Practical-Machine-Learning\nPractical Machine Learning Course Project\n\nThe goal of this project is to predict the manner in which they did the exercise based on the Training Dataset & Testing Dataset given\n\nIn the aforementioned study, six participants participated in a dumbell lifting exercise five different ways. The five ways, as described in the study, were “exactly according to the specification (Class A), throwing the elbows to the front (Class B), lifting the dumbbell only halfway (Class C), lowering the dumbbell only halfway (Class D) and throwing the hips to the front (Class E). Class A corresponds to the specified execution of the exercise, while the other 4 classes correspond to common mistakes.”\n\nUltimately, the prediction model is to be run on the test data to predict the outcome of 20 different test cases.\n",
+    "created" : 1452766431848.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1857939593",
+    "id" : "C9513DBF",
+    "lastKnownWriteTime" : 1452767086,
+    "path" : "D:/SIU2/Big_Data_Course/08-Practical_Machine_Learning/Project/Project/README.md",
+    "project_path" : "README.md",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "markdown"
+}
