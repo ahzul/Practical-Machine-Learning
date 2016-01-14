@@ -2,7 +2,7 @@
 title: "PRACTICAL MACHINE LEARNING COURSE PROJECT"
 author: "Zulkarnain Abu Hassan"
 date: "January 14, 2016"
-output: html_document
+output: pdf_document
 ---
 
 #1.SYNOPSIS

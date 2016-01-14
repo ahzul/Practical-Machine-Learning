@@ -1,0 +1,18 @@
+{
+    "contents" : "library(caret)\nlibrary(ggplot2)\nlibrary(gridExtra)\nlibrary(grid)\nlibrary(randomForest)\nlibrary(rpart)\nlibrary(rpart.plot)\nlibrary(rattle)\nlibrary(RColorBrewer)\n\n\nset.seed(12345)\n\ntrainUrl <- \"http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv\"\ntestUrl <- \"http://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv\"\ntraining <- read.csv(url(trainUrl), na.strings=c(\"NA\",\"#DIV/0!\",\"\"))\ntesting <- read.csv(url(testUrl), na.strings=c(\"NA\",\"#DIV/0!\",\"\"))\n\n#training contains 19622 obs of 160 variables\n#testing contains 20 obs of 160 variables\n\ninTrain <- createDataPartition(training$classe, p=0.6, list=FALSE)\nmyTraining <- training[inTrain, ]\nmyTesting <- training[-inTrain, ]\ndim(myTraining); dim(myTesting)\n\nnzv <- nearZeroVar(myTraining, saveMetrics=TRUE)\nmyTraining <- myTraining[,nzv$nzv==FALSE]\n\nnzv<- nearZeroVar(myTesting,saveMetrics=TRUE)\nmyTesting <- myTesting[,nzv$nzv==FALSE]\n\nmyTraining <- myTraining[c(-1)]\n\ntrainingV3 <- myTraining\nfor(i in 1:length(myTraining)) {\n  if( sum( is.na( myTraining[, i] ) ) /nrow(myTraining) >= .7) {\n    for(j in 1:length(trainingV3)) {\n      if( length( grep(names(myTraining[i]), names(trainingV3)[j]) ) == 1)  {\n        trainingV3 <- trainingV3[ , -j]\n      }   \n    } \n  }\n}\n\n# Set back to the original variable name\nmyTraining <- trainingV3\nrm(trainingV3)\n\nclean1 <- colnames(myTraining)\nclean2 <- colnames(myTraining[, -58])  # remove the classe column\nmyTesting <- myTesting[clean1]         # allow only variables in myTesting that are also in myTraining\ntesting <- testing[clean2]             # allow only variables in testing that are also in myTraining\n\ndim(myTesting)\n## [1] 7846   58\ndim(testing)\n## [1] 20 57\n\nfor (i in 1:length(testing) ) {\n  for(j in 1:length(myTraining)) {\n    if( length( grep(names(myTraining[i]), names(testing)[j]) ) == 1)  {\n      class(testing[j]) <- class(myTraining[i])\n    }      \n  }      \n}\n\ntesting <- rbind(myTraining[2, -58] , testing)\ntesting <- testing[-1,]\n\nset.seed(12345)\nmodFitA1 <- rpart(classe ~ ., data=myTraining, method=\"class\")\nfancyRpartPlot(modFitA1)\n\n\npredictionsA1 <- predict(modFitA1, myTesting, type = \"class\")\ncmtree <- confusionMatrix(predictionsA1, myTesting$classe)\ncmtree\n\nplot(cmtree$table, col = cmtree$byClass, main = paste(\"Decision Tree Confusion Matrix: Accuracy =\", round(cmtree$overall['Accuracy'], 4)))\n\n\nset.seed(12345)\nmodFitB1 <- randomForest(classe ~ ., data=myTraining)\npredictionB1 <- predict(modFitB1, myTesting, type = \"class\")\ncmrf <- confusionMatrix(predictionB1, myTesting$classe)\ncmrf\n\nplot(modFitB1)\n\nplot(cmrf$table, col = cmtree$byClass, main = paste(\"Random Forest Confusion Matrix: Accuracy =\", round(cmrf$overall['Accuracy'], 4)))\n\n\n\n",
+    "created" : 1452562893185.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2098103650",
+    "id" : "217523BA",
+    "lastKnownWriteTime" : 1452737202,
+    "path" : "D:/SIU2/Big_Data_Course/08-Practical_Machine_Learning/Project/Project/Training.R",
+    "project_path" : "Training.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
